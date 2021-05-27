@@ -12,8 +12,10 @@ const App = () => {
 
         web3.eth.getBalance(address).then(
             result => {
+
                 const balance = web3.utils.fromWei(result, "ether");
                 console.log(balance);
+                
             },
             error => {
                 console.log(error);
