@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.module.css"],"names":[],"mappings":"AAAA,mBACI,WAAY,CACZ,cACJ","file":"main.691a700c.chunk.css","sourcesContent":[".button {\r\n    margin: 30px;\r\n    cursor: pointer;\r\n}"]}
