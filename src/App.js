@@ -1,55 +1,31 @@
 import React from 'react';
-import Web3 from 'web3';
-import { getProvider } from './getProvider';
+import { Switch, Route, Link } from 'react-router-dom';
 import classes from './App.module.css';
+import Home from './pages/Home';
+import About from './pages/About';
+import Something from './pages/Something';
+import Faq from './pages/Faq';
+import PageNotFound from './pages/PageNotFound';
 
 const App = () => {
-    const address = '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B';
-
-
-    const getBalance = () => {
-        const web3 = new Web3(getProvider());
-
-        web3.eth.getBalance(address).then(
-            result => {
-                const balance = web3.utils.fromWei(result, "ether");
-                
-                console.log(balance);
-            },
-            error => {
-                console.log(error);
-            }
-        );
-    }
-
-    const getNonce = () => {
-        const web3 = new Web3(getProvider());
-
-        web3.eth.getTransactionCount(address).then(
-            result => {
-                console.log(result);
-            },
-            error => {
-                console.log(error);
-            }
-        );
-    }
-
-
+    
     return (
-        <div>
-            <button
-                className={classes.button}
-                onClick={getBalance}
-            >
-                Balance
-            </button>
-            <button
-                className={classes.button}
-                onClick={getNonce}
-            >
-                Nonce
-            </button>
+        <div className={classes.container}>
+            <div className={classes.nav}>
+                <Link exact="true" to="/" className={classes.navItem}>Home</Link>
+                <Link to="/about" className={classes.navItem}>About</Link>
+                <Link to="/something" className={classes.navItem}>Something</Link>
+                <Link to="/faq" className={classes.navItem}>FAQ</Link>
+            </div>
+            <div className={classes.content}>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route path="/something" component={Something} />
+                    <Route path="/faq" component={Faq} />
+                    <Route path="*" component={PageNotFound} />
+                </Switch>
+            </div>
         </div>
     )
 }
